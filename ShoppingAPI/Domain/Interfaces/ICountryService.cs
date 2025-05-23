@@ -9,7 +9,7 @@ namespace ShoppingAPI.Domain.Interfaces
 
         Task<Country> GetCountryByIdAsync(Guid id);
 
-        Task<Country> EditCountryAsync(Country country);
+        Task<Country> EditCountriesAsync(Country country);
 
         Task<Country> DeleteCountryAsync(Guid id);
 
