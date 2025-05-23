@@ -7,5 +7,11 @@ namespace ShoppingAPI.Domain.Interfaces
         Task<IEnumerable<Country>> GetCountriesAsync();
         Task<Country> CreateCountryAsync(Country country);
 
+        Task<Country> GetCountryById(Guid id);
+
+        Task<Country> EditCountryAsync(Country country);
+
+        Task<bool> DeleteCountryAsync(Guid id);
+
     }
 }
