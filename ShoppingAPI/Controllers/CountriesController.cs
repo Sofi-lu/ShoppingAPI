@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingAPI.DAL.Entities;
 using ShoppingAPI.Domain.Interfaces;
+using ShoppingAPI.Dtos;
 
 namespace ShoppingAPI.Controllers
 {
@@ -42,20 +43,20 @@ namespace ShoppingAPI.Controllers
 
         [HttpPost, ActionName("Create")]
         [Route("Create")]
-        public async Task<ActionResult<Country>> CreateCountryAsync(Country country)
+        public async Task<ActionResult<Country>> CreateCountryAsync([FromBody] CreateCountryDto dto)
         {
-            try 
+            try
             {
-                var newCountry = await _countryService.CreateCountryAsync(country);
-                if (newCountry == null) return NotFound();
-                return Ok(newCountry);
+                var country = new Country
+                {
+                    Name = dto.Name
+                };
+
+                var created = await _countryService.CreateCountryAsync(country);
+                return Ok(created);
             }
             catch (Exception ex)
             {
-                if (ex.Message.Contains("duplicate"))
-                {
-                    return Conflict(String.Format("[0] ya existe", country.Name));
-                }
                 return Conflict(ex.Message);
             }
         }

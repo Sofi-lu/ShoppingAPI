@@ -7,7 +7,11 @@ namespace ShoppingAPI.DAL.Entities
         [Display(Name ="País: ")]
         [MaxLength(50, ErrorMessage ="El campo {0} debe tener maximo {1} caracteres.")]
         [Required(ErrorMessage ="Campo obligatorio.")]
-       public string Name { get; set; } 
+       public string Name { get; set; }
+
+        [Display(Name = "Estados/Departamentos")]
+        public ICollection<State>? States { get; set; }
+
     }
     
     
