@@ -19,6 +19,7 @@ namespace ShoppingAPI.Domain.Services
             try
             {
                 return await _context.States
+
                     .Where(s => s.CountryId == countryId)
                     .ToListAsync();
             }
