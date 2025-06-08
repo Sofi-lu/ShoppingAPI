@@ -66,7 +66,7 @@ namespace ShoppingAPI.Domain.Services
 
         }
 
-        public async Task<Country> EditCountriesAsync(Country country)
+        public async Task<Country> EditCountryAsync(Country country)
         {
             try
             {
