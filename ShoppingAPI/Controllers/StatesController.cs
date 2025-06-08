@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingAPI.DAL.Entities;
 using ShoppingAPI.Domain.Interfaces;
+using ShoppingAPI.Dtos;
 
 namespace ShoppingAPI.Controllers
 {
@@ -32,16 +33,22 @@ namespace ShoppingAPI.Controllers
         }
 
         [HttpPost("Create")]
-        public async Task<ActionResult<State>> CreateStateAsync(State state)
+        public async Task<ActionResult<State>> CreateStateAsync([FromBody] CreateStateDto dto)
         {
             try
             {
+                var state = new State
+                {
+                    Name = dto.Name,
+                    CountryId = dto.CountryId
+                };
+
                 var created = await _stateService.CreateStateAsync(state);
                 return Ok(created);
             }
             catch (Exception ex)
             {
-                return Conflict(ex.Message);
+                return Conflict("Error al crear State: " + ex.Message);
             }
         }
 
