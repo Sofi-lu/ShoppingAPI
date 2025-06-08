@@ -19,6 +19,7 @@ namespace ShoppingAPI.Domain.Services
             try
             {
                 return await _context.States
+                    .Include(s => s.Country)
                     .Where(s => s.CountryId == countryId)
                     .ToListAsync();
             }
@@ -32,7 +33,7 @@ namespace ShoppingAPI.Domain.Services
         {
             try
             {
-                return await _context.States.FirstOrDefaultAsync(s => s.Name == name);
+                return await _context.States.Include(s => s.Country).FirstOrDefaultAsync(s => s.Name == name);
             }
             catch (DbUpdateException ex)
             {
