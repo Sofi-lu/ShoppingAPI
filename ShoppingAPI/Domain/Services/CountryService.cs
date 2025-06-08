@@ -38,7 +38,7 @@ namespace ShoppingAPI.Domain.Services
         {
             try
             {
-                var countries = await _context.Countries.Include(c=> c.States).ToListAsync();
+                var countries = await _context.Countries.ToListAsync();
 
                 return countries;
             }
